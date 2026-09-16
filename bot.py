@@ -26,8 +26,14 @@ from telegram.ext import (
     filters,
 )
 
-BOT_TOKEN = "313515:hbkjhbjkhbkjhbkjhbkjh"
-ADMIN_ID = 5646+546546+54
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+ADMIN_ID = int(os.getenv("ADMIN_ID", "1586853120"))
+
+if not BOT_TOKEN:
+    raise SystemExit(
+        "BOT_TOKEN environment variable set kora hoy nai! "
+        "Deployment platform-e BOT_TOKEN variable set korun."
+    )
 
 # Persist the mapping {admin_forwarded_message_id: original_user_chat_id}
 # so admin replies can be routed back correctly even after a restart.
